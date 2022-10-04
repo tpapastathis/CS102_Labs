@@ -4,8 +4,10 @@ public class MainClass {
 
 	public static void main(String[] args) {
 		int[] myArray1 = {4, 7, 2, 3, 1};
+		int[] myArray2 = {3, 99, 482, 5475489, 1, 44, 36, 79, 88, 10};
 		
 		mySort(myArray1);
+		mySort(myArray2);
 		
 
 	}
@@ -26,6 +28,7 @@ public class MainClass {
 		for(int i = 0; i < inputArray.length; i++) {
 			System.out.print(inputArray[i]+" ");
 		}
+		System.out.print("\n");
 	}
 
 }
