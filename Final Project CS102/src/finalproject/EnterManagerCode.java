@@ -3,7 +3,7 @@ package finalproject;
 import javax.swing.JOptionPane;
 
 public class EnterManagerCode {
-
+private static int correctCode = 1234;
 	public static void ManagerCode(){
 		String input = JOptionPane.showInputDialog(null, "Enter Manager Code (Integers Only):");
 		int inputInt = 0;
@@ -12,10 +12,10 @@ public class EnterManagerCode {
 				inputInt = Integer.parseInt(input);
 			}
 			catch(Exception e) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Entry Was Not An Integer");
 			}
 
-			if(inputInt==8942) {
+			if(inputInt==correctCode) {
 				System.out.println(true);
 				//call manager JFrame class
 			}

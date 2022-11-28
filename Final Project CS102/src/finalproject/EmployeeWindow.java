@@ -10,7 +10,7 @@ public class EmployeeWindow extends JFrame implements ActionListener{
 	
 	
 	JLabel welcome = new JLabel("Welcome!");
-	JLabel space = new JLabel();
+	JButton vacation = new JButton("Request Vacation Days");
 	JButton punchOut = new JButton("Punch out");
 	JButton punchIn = new JButton("Punch in");
 	JButton submit = new JButton("Submit!");
@@ -21,20 +21,22 @@ public class EmployeeWindow extends JFrame implements ActionListener{
 		setLayout(new FlowLayout());
 		setSize(SIZE,SIZE);
 		add(welcome);
-		add(space);
 		add(name);
+		add(vacation);
 		add(punchIn);
 		add(punchOut);
 		add(submit);
 		
 		
 		welcome.setVisible(true);
-		space.setVisible(true);
+		vacation.setVisible(true);
+		vacation.addActionListener(this);
 		punchOut.setVisible(true);
 		punchOut.addActionListener(this);
 		punchIn.setVisible(true);
 		punchIn.addActionListener(this);
 		submit.setVisible(true);
+		submit.addActionListener(this);
 		name.setVisible(true);
 		
 		setLocationRelativeTo(null);
@@ -74,6 +76,10 @@ public class EmployeeWindow extends JFrame implements ActionListener{
 			SubmissionComplete submitted = new SubmissionComplete();
 			
 			
+		}
+		else if(e.getSource()==vacation) {
+			//close window and call vacation days request method
+			System.out.println("vacation"); 
 		}
 		
 	}
