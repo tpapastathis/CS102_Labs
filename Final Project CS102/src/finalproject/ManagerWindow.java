@@ -71,6 +71,7 @@ class EnterAudit extends JFrame implements ActionListener{
 	JButton submitAudit = new JButton("Submit");
 	String empNameString, monthEntered;
 	Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
+	ArrayList<LocalDateTime> ldt = new ArrayList<LocalDateTime>();
 	protected EnterAudit() {
 		super("Audit Mode");
 		setSize(200,300);
@@ -107,16 +108,39 @@ class EnterAudit extends JFrame implements ActionListener{
 					if(EmployeeWindow.shiftList.get(i).name.equals(empNameString) 
 							&& EmployeeWindow.shiftList.get(i).endTime.substring(0,2).equals(monthEntered)) {
 						matches.add(EmployeeWindow.shiftList.get(i));
-						auditTime(matches);
+						
 					}
 				}
 				catch(Exception ex) {
-					JOptionPane.showMessageDialog(null, "Invalid Information Entered or No Shifts Found");
+					ex.printStackTrace();
 				}
 			}
+			if(!matches.isEmpty())
+				auditTime(matches);
+			else 
+				JOptionPane.showMessageDialog(null, "Invalid Information Entered or No Shifts Found");
 		}
 	}
 	public static void auditTime(ArrayList<Shift> match) {
+		ArrayList<String> tempStartTimes = new ArrayList<String>();
+		ArrayList<String> tempEndTimes = new ArrayList<String>();
+		ArrayList<LocalDateTime> tempStartLDT = new ArrayList<LocalDateTime>();
+		ArrayList<LocalDateTime> tempEndLDT = new ArrayList<LocalDateTime>();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss");
+		for(int i = 0; i < match.size(); i++) {
+			tempStartTimes.add(match.get(i).startTime.toString());
+			tempEndTimes.add(match.get(i).endTime.toString());
+			
+			
+			///////////////////// FIX
+			//tempStartLDT.add(LocalDateTime.parse(tempStartTimes.get(i), formatter));
+			//tempEndLDT.add(LocalDateTime.parse(tempEndTimes.get(i), formatter));
+		}
+		System.out.println("Start Times: "+tempStartTimes);
+		System.out.println("End Times: "+tempEndTimes);
+		
+		System.out.println(tempStartLDT);
+		System.out.println(tempEndLDT);
 		
 	}
 }
