@@ -1,22 +1,20 @@
 package finalproject;
 
-public class Shift {
+import java.io.Serializable;
+
+public class Shift implements Serializable{
 	public String name, startTime, endTime;
-	public Shift(String nameInput, String startTimeInput, String endTimeInput) {
+	public static int id = 0;
+	private int currentId;
+	public Shift (String nameInput, String startTimeInput, String endTimeInput) {
 		this.name = nameInput;
 		this.startTime = startTimeInput;
 		this.endTime = endTimeInput;
-		
+		this.currentId = id;
+		id++;
 	}
 	@Override
 	public String toString() {
-		return this.name + " " + this.startTime + " " + this.endTime;
+		return this.currentId + " " + this.name + " " + this.startTime + " " + this.endTime;
 	}
-//	public void displayShift(String shiftString) {
-//		System.out.println(shiftString);
-//	}
-	public static void main(String[] args) {
-		Shift test = new Shift("Ted", "12:34", "12:35");
-	}
-
 }

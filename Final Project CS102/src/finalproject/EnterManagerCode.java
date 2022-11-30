@@ -14,10 +14,8 @@ private static int correctCode = 1234;
 			catch(Exception e) {
 				JOptionPane.showMessageDialog(null, "Entry Was Not An Integer");
 			}
-
 			if(inputInt==correctCode) {
-				System.out.println(true);
-				//call manager JFrame class
+				ManagerWindow window = new ManagerWindow();
 			}
 			else {
 				JOptionPane.showMessageDialog(null,"Invalid Manager Code");

@@ -23,8 +23,6 @@ public class SubmissionComplete extends JFrame implements ActionListener{
 		requestFocus();
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
 	}
 	public static void main(String[] args) {
 		SubmissionComplete submission = new SubmissionComplete();

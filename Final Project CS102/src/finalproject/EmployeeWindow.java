@@ -5,7 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;  
 import java.util.ArrayList;
-import java.time.LocalDateTime; 
+import java.time.LocalDateTime;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 public class EmployeeWindow extends JFrame implements ActionListener{
 	/**
 	 * 
@@ -14,7 +21,7 @@ public class EmployeeWindow extends JFrame implements ActionListener{
 	final int SIZE = 133;
 	ArrayList<String> punchInName = new ArrayList<String>();
 	ArrayList<String> punchInTime = new ArrayList<String>();
-	ArrayList<Shift> shiftList = new ArrayList<Shift>();
+	public static ArrayList<Shift> shiftList = new ArrayList<Shift>();
 	
 	JLabel welcome = new JLabel("Welcome!");
 	JButton vacation = new JButton("Request Vacation Days");
@@ -28,6 +35,7 @@ public class EmployeeWindow extends JFrame implements ActionListener{
     
 	public EmployeeWindow() {
 		super("Employee Mode");
+		loadShift();
 		setLayout(new FlowLayout());
 		setSize(SIZE*3,SIZE);
 		add(welcome);
@@ -100,19 +108,64 @@ public class EmployeeWindow extends JFrame implements ActionListener{
 					}
 				}
 			}
-			
 			if(!textEntry.equals("Enter first and last name")) {
 				SubmissionComplete submitted = new SubmissionComplete();
+				saveShift();
 			}
-			
 		}
 		else if(e.getSource()==vacation) {
 			//close window and call vacation days request method
+			VacationDays vacation = new VacationDays(textEntry, 5);
+			//setVisible(false);
 			System.out.println("vacation"); 
 		}
 		
 	}
 	public static void main(String args[]) {
 		EmployeeWindow test = new EmployeeWindow();
+	}
+	public static void saveShift() {
+		try {
+			FileOutputStream fileOutput = new FileOutputStream(new File("shiftData.txt"));
+			ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
+			
+			objectOutput.writeObject(shiftList);
+			
+			fileOutput.close();
+			objectOutput.close();
+			
+			FileOutputStream fileOutput2 = new FileOutputStream(new File("shiftIds.txt"));
+			fileOutput2.write(Shift.id);
+			
+			fileOutput2.close();
+			
+		}
+		catch(IOException e) {
+			System.out.println("IOException");
+		}
+	}
+	public static void loadShift() {
+		try {
+			FileInputStream fileInput = new FileInputStream("shiftData.txt");
+			ObjectInputStream objectInput = new ObjectInputStream(fileInput);
+			FileInputStream fileInput2 = new FileInputStream("shiftIds.txt");
+			
+			shiftList = (ArrayList) objectInput.readObject();
+			
+			fileInput.close();
+			objectInput.close();
+			
+			Shift.id = (int) fileInput2.read();
+		}
+		catch(FileNotFoundException e) {
+			System.out.println("File not found");
+		}
+		catch(IOException ie) {
+			System.out.println("IOException");
+		}
+		catch(ClassNotFoundException ce) {
+			System.out.println("Class not found");
+		}
+		
 	}
 }

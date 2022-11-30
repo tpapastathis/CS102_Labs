@@ -27,13 +27,9 @@ public class FirstWindow extends JFrame implements ActionListener{
 		manager.addActionListener(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	
-	
-
 	public static void main(String[] args) {
 		FirstWindow primary = new FirstWindow();
 	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==employee) {
@@ -41,7 +37,7 @@ public class FirstWindow extends JFrame implements ActionListener{
 			manager.setEnabled(false);
 			
 			super.dispose();
-			EmployeeWindow employee = new EmployeeWindow();
+			EmployeeWindow employee = new EmployeeWindow();			
 		}
 		else if(e.getSource()==manager) {
 			manager.setEnabled(false);
