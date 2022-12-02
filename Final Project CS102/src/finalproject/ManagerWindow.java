@@ -86,7 +86,6 @@ class EnterAudit extends JFrame implements ActionListener{
 		add(dateSpan);
 		dateSpan.setSize(5,5);
 		
-		
 		add(submitAudit);
 		submitAudit.addActionListener(this);
 		

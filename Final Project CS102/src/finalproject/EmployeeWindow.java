@@ -117,9 +117,7 @@ public class EmployeeWindow extends JFrame implements ActionListener{
 			//close window and call vacation days request method
 			VacationDays vacation = new VacationDays(textEntry, 5);
 			//setVisible(false);
-			System.out.println("vacation"); 
 		}
-		
 	}
 	public static void main(String args[]) {
 		EmployeeWindow test = new EmployeeWindow();

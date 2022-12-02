@@ -21,5 +21,4 @@ public class MainClass {
 		
 		FirstWindow initial = new FirstWindow();
 	}
-
 }
